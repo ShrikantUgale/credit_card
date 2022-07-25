@@ -17,8 +17,9 @@ cardRouter.post('/add', async (req, res) => {
 
     } else {
 
-        const { name, cardNumber, limit} = req.body;
-        const doc = await cardsDb.insertOne({ name, cardNumber, limit});
+        const { name, cardNumber, limit, balance = 0} = req.body;
+
+        const doc = await cardsDb.insertOne({ name, cardNumber, limit, balance});
         res.status(201).send({ doc });
     }
 })
